@@ -1,5 +1,7 @@
 import React from 'react';
 import "./sign_up.css";
+import Form from "./sign_up_form/form";
+import {Link} from 'react-router-dom';
 
 
 const SignUp = (props) => {
@@ -15,20 +17,22 @@ const SignUp = (props) => {
         <h2 className="h2">SignUp Page</h2>
         
         </div>
-
         
-
-        <button type="submit">SignUp</button>
 
     </main>
 
     <aside className="aside">
         <h3>Hi</h3>
-        {/* <img className="asideDots" src={home} alt="aside dots"/> */}
+
+        <Form />
+
+        
     </aside>
 
+    <br></br>
+
     </div>
-    
+    <Link to="/the_challenge" className="submitButton">Continue to the Challenge page</Link>
     </div>
 );
 

@@ -54,8 +54,6 @@ const App = () => (
 
             {/* <Route path="/products/:product_id" component={ProductDetails} />
 
-            <Route path="/cart" component={Cart} />
-
             <Route path="/checkout/guest" component={GuestCheckout} />
 
             <Route path="/orders/guest/:order_id" component={GuestOrderDetails} /> */}
