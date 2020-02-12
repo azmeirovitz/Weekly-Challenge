@@ -6,21 +6,7 @@ import { Field } from 'redux-form';
 const Input = (props) => {
     return (
         <div>
-            <div>
-                <label>First name and Last name</label>
-                <br></br>
-                <Field 
-                className="input-field-name"
-                name="name" 
-                component="input" 
-                type="name" 
-                placeholder="First-Name Last-Name" 
-                pattern="([A-Za-z ]+) ([A-Za-z ]+)"
-                required
-                />
-
-            </div>
-            <br></br>
+            
 
             <div >
                 <label>Email</label>
@@ -55,21 +41,7 @@ const Input = (props) => {
             </div>
             <br></br>
 
-            <div >
-                <label>Re-enter your password</label>
-                <br></br>
-                <Field 
-                className="input-field-password"
-                name="re_password" 
-                component="input" 
-                type="password" 
-                placeholder="Password"
-                pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
-                title="Must follow the password rules"
-                required
-                />
-            </div>
-            <br></br>
+            
         </div>
     );
 

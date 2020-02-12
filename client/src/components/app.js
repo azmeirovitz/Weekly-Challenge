@@ -49,18 +49,10 @@ const App = () => (
             <Route path="/thank_you" component={ThankYou} />
 
             <Route path="/login" exact component={Login} />
-            <Route path="/sign_up" exact component={SignUp} />
-
-
-            {/* <Route path="/products/:product_id" component={ProductDetails} />
-
-            <Route path="/checkout/guest" component={GuestCheckout} />
-
-            <Route path="/orders/guest/:order_id" component={GuestOrderDetails} /> */}
-
+            <Route path="/sign_up" exact component={SignUp} />           
             
 
-            {/* <Footer /> */}
+            
         </div>
 
     </div>
