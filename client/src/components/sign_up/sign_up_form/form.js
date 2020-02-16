@@ -13,9 +13,17 @@ import axios from 'axios';
 let Form = props => {
 
     const handleFormSubmit = (formValues) => {
-        alert("submitted"),
+        alert("Submit button was clicked"),
         console.log("On submit simple form values: ", formValues);
-        console.log("formValues.firstName: ", formValues.firstName);
+        //console.log("formValues.firstName: ", formValues.firstName);
+
+        if (formValues.password === formValues.re_password) {
+
+        } else {
+            alert("Your re-entered password should be exactly as your password.")
+
+            return;
+        }
 
         
         const create = (student) => {
