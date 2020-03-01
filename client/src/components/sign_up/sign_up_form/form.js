@@ -3,6 +3,7 @@ import {reduxForm} from 'redux-form';
 import Input from './input';
 //import Textarea from '../general/form/textarea.js';
 import axios from 'axios';
+import {Link, withRouter} from 'react-router-dom';
 
 // const axiosInstance = axios.create({
 //     baseURL: "https://localhost:3001/api"
@@ -12,45 +13,69 @@ import axios from 'axios';
 
 let Form = props => {
 
-    const handleFormSubmit = (formValues) => {
-        alert("Submit button was clicked"),
-        console.log("On submit simple form values: ", formValues);
-        //console.log("formValues.firstName: ", formValues.firstName);
+    console.log("props_sign_up: ", props);
 
-        if (formValues.password === formValues.re_password) {
+// CREATE FUNCTION:       
+const create = (student) => {
+    console.log("student: ", student);
 
-        } else {
-            alert("Your re-entered password should be exactly as your password.")
+                    
+    const resp = axios.post("http://localhost:3001/api/student_info", student)            
 
-            return;
-        }
-
-        
-        const create = (student) => {
-
-            console.log("student: ", student);
-
-                        
-            const resp = axios.post("http://localhost:3001/api/student_info", student)
+        .then(function (resp) {
+            console.log("resp: ", resp);
             
+            props.history.push('/the_challenge');            
 
-            ///const resp = axios.post('/api/student_info', student) //How does it know to go to http//localhost:3000? How do I create an endpoint?
-
+        })
+        .catch(function (error) {
+            console.log("error: ", error);
+        });
+        
+        //return resp;
+    }
+    
+    
+    const checkIfEmailExists = (formValues) => {
+        const resp = axios.patch(`/api/student_info/${formValues.email}`)
             .then(function (resp) {
-                console.log("resp: ", resp);
+                console.log("resp.data: ", resp.data);
+                
+                if (resp.data.checkEmailExists.length === 0) {
+                    
+                    create (formValues);
+                    
+
+                } else {
+                    
+                    alert("This email has an account already, try a different email");
+                    return;
+                    
+                }
+
             })
             .catch(function (error) {
                 console.log("error: ", error);
-            });
-            
-            //return resp;
+            })
+
         }
 
-        create (formValues);        
-        //const studentPost = create(formValues);
-        //const studentPost = await props.create(formValues);
-
+    const handleFormSubmit = (formValues) => {
+        alert("Submit button was clicked");
+        //console.log("On submit simple form values: ", formValues);
         
+        
+
+        if (formValues.password === formValues.re_password) {
+            console.log("---");
+            checkIfEmailExists(formValues);
+        } else {
+            alert("Your re-entered password should be exactly the same as your password.")
+
+            return;
+        }  
+        
+                       
     }
 
     // axios.post('/user', {
@@ -60,8 +85,9 @@ let Form = props => {
     
 
 
-    const {handleSubmit} = props 
-
+    const {handleSubmit} = props;
+    
+    
     return (
         <div>
             <br></br>
@@ -74,17 +100,21 @@ let Form = props => {
             
             <br></br>              
 
-                <div >
-                    <button className="form-actions" type="submit">Submit your information</button> 
-                </div> 
+            <div >
+                <button className="form-actions" type="submit">      Submit your information</button>                
+            </div>
+            <br></br>
+                      
+            {/* <Link to="/the_challenge" className="submitButton">Continue to the Challenge page</Link> */}
 
-
+            
             </form>
 
         </div>
     )
 }
 
-export default reduxForm ({
-    form: 'simple-form',  //A unique identifyer
-})(Form)                //Can also be simpleForm
+export default withRouter(reduxForm ({
+    form: 'simple-form',  //A unique identifyer  //Can also be simpleForm
+    
+})(Form));
