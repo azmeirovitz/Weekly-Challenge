@@ -1,21 +1,21 @@
 import React from 'react';
-import "./sign_up.css";
-import Form from "./sign_up_form/form";
+import "./forgot-your-password.css";
+import Form from "./form-forgot-your-password";
 import {Link} from 'react-router-dom';
-import {x} from "./sign_up_form/form";
 
 
-const SignUp = (props) => {
+
+const ForgotYourPassword = (props) => {
     return (
 <div className="theContainer">
     <div className="loginContainer">
     <main className="main">  
         <div className="paragraphs">      
-        <h1 className="h2">The Weekly Challenge - SignUp page</h1>
+        <h1 className="h2">The Weekly Challenge - Forgot Your Password page</h1>
        
         <br></br>
 
-        <h2 className="h2">SignUp Page</h2>
+        <h2 className="h2">Forgot Your Password Page</h2>
         
         </div>
         
@@ -36,10 +36,10 @@ const SignUp = (props) => {
 
     {/* <Link {{x} === 1 ? to="/the_challenge" : alert("You have to submit your information before moving on.") }className="submitButton">Continue to the Challenge page</Link> */}
 
-    {/* <Link to="/forgot-your-password" className="submitButton">Forgot Your Password</Link> */}
+    {/* <Link to="/the_challenge" className="submitButton">Continue to the Challenge page</Link> */}
     </div>
 );
 
 }
  
-export default SignUp;
+export default ForgotYourPassword;

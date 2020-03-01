@@ -32,7 +32,9 @@ const Login = (props) => {
     <br></br>
     </div>
 
-    <Link to="/the_challenge" className="submitButton">Continue to the Challenge page</Link>
+    <Link to="/forgot-your-password" className="submitButton">Forgot Your Password</Link>
+
+    {/* <Link to="/the_challenge" className="submitButton">Continue to the Challenge page</Link> */}
     
     </div>
 );

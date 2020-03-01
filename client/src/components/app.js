@@ -25,6 +25,7 @@ import SignUp from "./sign_up";
 import TheChallenge from "./the_challenge";
 import StudentResponse from "./student_response";
 import ThankYou from "./thank_you";
+import ForgotYourPassword from "./forgot-your-password";
 
 // import ProductDetails from "./products/product_details";
 // import Cart from './cart';
@@ -49,7 +50,8 @@ const App = () => (
             <Route path="/thank_you" component={ThankYou} />
 
             <Route path="/login" exact component={Login} />
-            <Route path="/sign_up" exact component={SignUp} />           
+            <Route path="/sign_up" exact component={SignUp} />
+            <Route path="/forgot-your-password" exact component={ForgotYourPassword} />          
             
 
             
