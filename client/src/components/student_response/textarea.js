@@ -7,11 +7,11 @@ const Textarea = (props) => {
         <div > 
             
             <Field 
-                    className="input-field-message"
+                    className="input-textarea-student-solution"
                     name="message" 
                     component="textarea"
-                    rows="3"
-                    cols="10"                    
+                    rows="10"
+                    cols="50"                    
                     type="text" placeholder="Message"
                     pattern="[A-Za-z]{1,1000}"
                     required
