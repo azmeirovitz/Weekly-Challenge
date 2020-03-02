@@ -24,9 +24,12 @@ app.patch('/api/student_info/:sign_up_email', async (req, res, next) => {
 
     const [checkEmailExists] = await db.execute(`SELECT email FROM student_info WHERE email = ?` , [sign_up_email]);
 
+    const [checkEmailInResponsesTable] = await db.execute(`SELECT student_email FROM the_weekly_challenge WHERE student_email = ?` , [sign_up_email]);
+
     res.send({
         //message: '',
-        checkEmailExists: checkEmailExists
+        checkEmailExists: checkEmailExists,
+        checkEmailInResponsesTable: checkEmailInResponsesTable
 
     });
 
@@ -145,6 +148,49 @@ app.patch('/api/student_info/:sign_up_email/:sign_up_password/:switchVar', async
 
 
 });
+
+// STUDENT RESPONSE INSERT
+
+app.post('/api/student_info/the_weekly_challenge/:theChallenge', async (req, res, next) => {
+
+    res.setHeader("access-control-allow-origin", "*"); // K's
+    
+        let errors = [];
+
+        const {theChallenge} = req.params;
+        console.log("req.params theChallenge:", req.params);
+        console.log("theChallenge from the req.params:", theChallenge);
+    
+        const {message, email } = req.body;
+
+        console.log("req.body:", req.body);
+        console.log("studentResponse", message);
+
+    
+        
+        try {
+
+        const [results] = await db.execute(`INSERT INTO the_weekly_challenge (pid, student_email, the_challenge, studentResponse) VALUES (UUID(), ?, ?, ?)`, [email, theChallenge, message]);
+    
+            
+        // const [results] = await db.execute(`INSERT INTO the_weekly_challenge (pid, firstName, lastName, email, password_hashed) VALUES (UUID(), ?, ?, ?, ?)`, [firstName, lastName, email, generated_hash]);
+    
+        
+    res.send({
+        message: 'Inserting a new studentResponse works!',
+        email: email,
+        studentResponse: message
+         
+    });
+    
+    }
+    
+    catch (error) {
+            
+        next(error);
+    }
+    
+    });
 
 
 

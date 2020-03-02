@@ -25,7 +25,8 @@ const create = (student) => {
         .then(function (resp) {
             console.log("resp: ", resp);
             
-            props.history.push('/the_challenge');            
+            //props.history.push('/the_challenge');
+            props.history.push('/login');            
 
         })
         .catch(function (error) {

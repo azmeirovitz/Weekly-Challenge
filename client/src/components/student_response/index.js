@@ -23,7 +23,7 @@ const StudentResponse = (props) => {
         <br></br>
 
         {/* This Link should validate the given info and if right, then go to The Challenge page. */}
-        <Link to="/thank_you" className="logOutButton">Continue to Thank you Page</Link>
+        {/* <Link to="/thank_you" className="logOutButton">Continue to Thank you Page</Link> */}
 
     </main>
 

@@ -28,7 +28,7 @@ const checkIfPassMatches = (formValues) => {
                     console.log("dbPassword2:", dbPassword2);
                     console.log("resp.data.generated_hash_input_login:", resp.data.generated_hash_input_login);
                     console.log("Input and db Passwords are matching");
-                    props.history.push('/the_challenge');
+                    props.history.push('/student_response');
 
                 } else {
                     console.log("resp.data.checkPasswordMatch: ", resp.data.checkPasswordMatch);
@@ -112,11 +112,12 @@ const checkIfPassMatches = (formValues) => {
 
     }
 
-    
+     
 
     const {handleSubmit} = props 
 
     return (
+
         <div> 
             <br></br>
             <h5 className="h5">Please enter the following infirmation</h5>
@@ -133,15 +134,20 @@ const checkIfPassMatches = (formValues) => {
                 </div> 
 
 
+
             </form>
 
         </div>
     )
 }
 
+// module.exports = {
+//     email: formValues.email
+// }
+
 export default withRouter(reduxForm ({
     form: 'simple-form-login',  //A unique identifyer  //Can also be simpleForm
-    
+    //email:formValues.email
 })(Form));
 
 // export default reduxForm ({
