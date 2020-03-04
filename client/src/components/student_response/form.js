@@ -3,26 +3,27 @@ import {reduxForm} from 'redux-form';
 import Textarea from './textarea';
 import axios from 'axios';
 import {Link, withRouter} from 'react-router-dom';
-//import {email} from '../login/login_form/form';
 import Input from './input';
 
 let theChallenge = "Tee Shirts sell for $15 each and striped shirts for $22 each. A total of 62 shirts are sold, and the total value of the shirts is $1098. How many of each kind of shirt were sold?" 
 
-//let theChallengeNumber = 1;
-
 let Form = props => {
 
-    //console.log("email from login_form file to student_response file ::", email);
-
-    const insertStudentResponse = (studentResponse, theChallenge) => {
+    const insertStudentResponse = (studentResponse, theChallenge, email) => {
         console.log("studentResponseText: ", studentResponse);
+
+console.log("email from login as location.state: ", email); 
+console.log("the challenge: ", theChallenge);
+
+theChallenge = encodeURI(theChallenge);
+email = encodeURI(email);
     
                         
-        const resp = axios.post(`http://localhost:3001/api/student_info/the_weekly_challenge/${theChallenge}`, studentResponse)            
-    
+const resp = axios.post(`http://localhost:3001/api/student_info/the_weekly_challenge?theChallenge=${theChallenge}&email=${email}`, studentResponse)      
+
             .then(function (resp) {
                 console.log("resp of student response post: ", resp);
-                console.log("resp.data.studentResponse:", resp.data.studentResponse);
+                console.log("resp.data.studentResponse:", resp.data.studentResponse); // Why is this undefined? Because I did not send it.
                 console.log("theChallenge:: ", theChallenge);
                 
                 props.history.push('/thank_you');            
@@ -34,24 +35,19 @@ let Form = props => {
             
         }
 
-        const checkIfEmailExists = (formValues) => {
-            const resp = axios.patch(`/api/student_info/${formValues.email}`)
+        const checkIfEmailExists = (formValues, loginEmail) => {
+            const resp = axios.patch(`/api/student_info/${loginEmail}`)
                 .then(function (resp) {
                     console.log("resp.data: ", resp.data);
                     
-                    if (resp.data.checkEmailExists.length === 0) {
-                        
-                        alert("An acount with this email does not exist.");
-                        return;
-                                                                    
-                    } else if (resp.data.checkEmailInResponsesTable.length > 0) {
+                    if (resp.data.checkEmailInResponsesTable.length > 0) {
 
                         alert("You have already submitted a response for this challenge.");
                         return;
 
                     } else {                    
                         
-                        insertStudentResponse(formValues, theChallenge);
+                        insertStudentResponse(formValues, theChallenge, loginEmail);
                         
                     }
     
@@ -69,10 +65,13 @@ let Form = props => {
         alert("Student response submitted clicked"),
         console.log("student response input: ", formValues);
         
-        checkIfEmailExists(formValues);        
+        checkIfEmailExists(formValues, props.location.state);
+        
+        //insertStudentResponse(formValues, theChallenge, props.location.state);
 
     }
 
+    console.log("email from Login page: ", props.location.state);
 
     const {handleSubmit} = props 
 
@@ -88,8 +87,6 @@ let Form = props => {
 
             <form onSubmit={handleSubmit(handleFormSubmit)}>
 
-            <Input />
-            
             <Textarea />
             
             <br></br>              
@@ -109,7 +106,3 @@ export default withRouter(reduxForm ({
     form: 'simple-form-student-response',  //A unique identifyer  //Can also be simpleForm
     
 })(Form));
-
-// export default reduxForm ({
-//     form: 'simple-form',  //A unique identifyer
-// })(Form)                //Can also be simpleForm

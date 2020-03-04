@@ -28,7 +28,13 @@ const checkIfPassMatches = (formValues) => {
                     console.log("dbPassword2:", dbPassword2);
                     console.log("resp.data.generated_hash_input_login:", resp.data.generated_hash_input_login);
                     console.log("Input and db Passwords are matching");
-                    props.history.push('/student_response');
+                    //props.history.push('/student_response');
+
+                    props.history.push({
+                        pathname: '/student_response',
+                        state: formValues.email
+                    })
+
 
                 } else {
                     console.log("resp.data.checkPasswordMatch: ", resp.data.checkPasswordMatch);
@@ -36,7 +42,7 @@ const checkIfPassMatches = (formValues) => {
                     console.log("resp.data.generated_hash_input_login:", resp.data.generated_hash_input_login);
 
                     console.log("Input and db Passwords are not matching");
-                    alert("Your password does not match your email. Try again.");
+                    alert("Your password does not match your email, or an account with this email does not exist. Try again.");
                     return; // Verify this return //It works
                 }
                 

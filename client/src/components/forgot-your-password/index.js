@@ -10,7 +10,10 @@ const ForgotYourPassword = (props) => {
 <div className="theContainer">
     <div className="loginContainer">
     <main className="main">  
-        <div className="paragraphs">      
+        <div className="paragraphs"> 
+
+        <Link to="/" className="logOutButton">Back to Home Page</Link>
+
         <h1 className="h2">The Weekly Challenge - Forgot Your Password page</h1>
        
         <br></br>
