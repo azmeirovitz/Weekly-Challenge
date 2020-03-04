@@ -18,7 +18,11 @@ const renewPassword = (formValues) => {
     const resp = axios.patch(`/api/student_info/${formValues.email}/${formValues.password}/${switchVar}`)
             .then(function (resp) {
                 console.log("resp.data of re-new password: ", resp.data);
-                props.history.push('/the_challenge');
+                //props.history.push('/student_response');
+                props.history.push({
+                    pathname: '/student_response',
+                    state: formValues.email
+                })
                         
                 
 

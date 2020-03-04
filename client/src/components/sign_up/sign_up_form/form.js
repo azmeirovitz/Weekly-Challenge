@@ -26,7 +26,12 @@ const create = (student) => {
             console.log("resp: ", resp);
             
             //props.history.push('/the_challenge');
-            props.history.push('/login');            
+            //props.history.push('/login');
+            props.history.push({
+                pathname: '/student_response',
+                state: student.email
+            })
+
 
         })
         .catch(function (error) {
@@ -90,7 +95,8 @@ const create = (student) => {
     
     
     return (
-        <div>
+        <div>            
+
             <br></br>
             <h5 className="h5">Please enter the following infirmation</h5>
             <br></br>
@@ -102,13 +108,11 @@ const create = (student) => {
             <br></br>              
 
             <div >
-                <button className="form-actions" type="submit">      Submit your information</button>                
+                <button className="form-actions" type="submit">Submit your information</button>                
             </div>
             <br></br>
                       
-            {/* <Link to="/the_challenge" className="submitButton">Continue to the Challenge page</Link> */}
-
-            
+                        
             </form>
 
         </div>

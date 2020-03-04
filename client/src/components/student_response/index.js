@@ -9,7 +9,10 @@ const StudentResponse = (props) => {
 <div className="theContainer">
     <div className="loginContainer">
     <main className="main">  
-        <div className="paragraphs">      
+        <div className="paragraphs">     
+
+        <Link to="/" className="logOutButton">Back to Home Page</Link>
+
         <h1 className="h2">The Weekly Challenge - Student Response page</h1>
        
         <br></br>
@@ -21,9 +24,6 @@ const StudentResponse = (props) => {
         <Form />
 
         <br></br>
-
-        {/* This Link should validate the given info and if right, then go to The Challenge page. */}
-        {/* <Link to="/thank_you" className="logOutButton">Continue to Thank you Page</Link> */}
 
     </main>
 

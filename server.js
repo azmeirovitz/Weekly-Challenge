@@ -151,29 +151,32 @@ app.patch('/api/student_info/:sign_up_email/:sign_up_password/:switchVar', async
 
 // STUDENT RESPONSE INSERT
 
-app.post('/api/student_info/the_weekly_challenge/:theChallenge', async (req, res, next) => {
+app.post('/api/student_info/the_weekly_challenge', async (req, res, next) => {
 
     res.setHeader("access-control-allow-origin", "*"); // K's
     
         let errors = [];
 
-        const {theChallenge} = req.params;
-        console.log("req.params theChallenge:", req.params);
+        const {theChallenge, email} = req.query;
+        //console.log("req.params theChallenge:", req.params);
         console.log("theChallenge from the req.params:", theChallenge);
+        console.log("email from req.query:", email);
     
-        const {message, email } = req.body;
+        const { message } = req.body;
+        //const {message, }
 
-        console.log("req.body:", req.body);
+        //console.log("req.body:", req.body);
         console.log("studentResponse", message);
 
     
         
         try {
 
-        const [results] = await db.execute(`INSERT INTO the_weekly_challenge (pid, student_email, the_challenge, studentResponse) VALUES (UUID(), ?, ?, ?)`, [email, theChallenge, message]);
-    
+        // /// In general, can insert the challenge question into a separate table, so each challenge has an id and a pid. Then, when inserting the below part, can use the pid form this challenges table, thus, store in teh below table only the pid of the challenge and not the challenge itself. Not sure it makes any difference in the application.
+
+        const [results] = await db.execute(`INSERT INTO the_weekly_challenge (pid, student_email, the_challenge, studentResponse) VALUES (UUID(), ?, ?, ?)`, [email, theChallenge, message]);  
             
-        // const [results] = await db.execute(`INSERT INTO the_weekly_challenge (pid, firstName, lastName, email, password_hashed) VALUES (UUID(), ?, ?, ?, ?)`, [firstName, lastName, email, generated_hash]);
+        
     
         
     res.send({

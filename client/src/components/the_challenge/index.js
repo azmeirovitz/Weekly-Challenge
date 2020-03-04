@@ -42,7 +42,7 @@ const TheChallenge = (props) => {
         <br></br>
 
         <h2 className="h2">The Challenge:</h2>
-        <h3>{challenge}</h3>
+        <h3>{theChallenge}</h3>
         
         </div> 
 
