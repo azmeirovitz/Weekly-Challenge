@@ -26,13 +26,9 @@ import TheChallenge from "./the_challenge";
 import StudentResponse from "./student_response";
 import ThankYou from "./thank_you";
 import ForgotYourPassword from "./forgot-your-password";
-
-// import ProductDetails from "./products/product_details";
-// import Cart from './cart';
-// import GuestCheckout from "./checkout/guest_checkout";
-// import GuestOrderDetails from './orders/guest_order_details';
-
-// import "./app.scss";
+import TeacherMainPage from './teacher_main_page';
+import TeacherChangeChallenge from './teacher_change_challenge';
+import TeacherGetStudentList from './teacher_get_student_list';
 
 
 ////// <Link> is good for buttons/visuals
@@ -51,7 +47,11 @@ const App = () => (
 
             <Route path="/login" exact component={Login} />
             <Route path="/sign_up" exact component={SignUp} />
-            <Route path="/forgot-your-password" exact component={ForgotYourPassword} />          
+            <Route path="/forgot-your-password" exact component={ForgotYourPassword} />
+
+            <Route path="/teacher_main_page" exact component={TeacherMainPage} />
+            <Route path="/teacher_change_challenge" exact component={TeacherChangeChallenge} />
+            <Route path="/teacher_get_student_list" exact component={TeacherGetStudentList} />
             
 
             
