@@ -40,6 +40,23 @@ const Input = (props) => {
                     />
             </div>
             <br></br>
+            <br></br>
+
+            <div >
+                <label>Teacher's Code</label>
+                <br></br>           
+                <Field 
+                className="input-teacher-code"
+                name="teacher_code" 
+                component="input" 
+                type="password" 
+                placeholder=""
+                pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{5,}"
+                title="Must contain at least one number, one uppercase, one lowercase letter, and at least 8 characters"
+                // required 
+                    />
+            </div>
+            <br></br>
 
             
         </div>
