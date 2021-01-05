@@ -24,7 +24,7 @@
     "url": "git+https://github.com/Learning-Fuze/react_starter.git"
   },
   "dependencies": {
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "bootstrap": "^4.4.1",
     "react": "^16.5.2",
     "react-dom": "^16.5.2",
